@@ -1,16 +1,16 @@
-package string_encrypted_test
+package encryption_test
 
 import (
 	"encoding/json"
 	"strings"
 	"testing"
 
-	encryption "github.com/jhalag/jsonutils/string_encrypted"
+	encryption "github.com/jhalag/jsonutils/encryption"
 )
 
 type TestStruct struct {
 	RegularString string
-	EncString     encryption.EncryptedTextField
+	EncString     encryption.String
 }
 
 func TestMarshal(t *testing.T) {

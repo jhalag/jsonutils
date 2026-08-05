@@ -1,4 +1,4 @@
-package string_encrypted
+package encryption
 
 import (
 	"encoding/base64"
@@ -19,13 +19,13 @@ var ErrEncryptionKeyNotSet = errors.New("Marshal Encryption Key not set")
 //   - supports reading of encrypted fields previously saved
 //   - can also load plaintext for future re-saving encrypted
 //   - encrypted data is stored Base64 encoded - storing a valid B64 string unencrypted will cause unmarshal to be incorrect.
-type EncryptedTextField struct {
+type String struct {
 	WasPlaintext bool
 	Value        string
 }
 
 // Marshal = struct > JSON
-func (e EncryptedTextField) MarshalJSON() ([]byte, error) {
+func (e String) MarshalJSON() ([]byte, error) {
 	if marshalEncryptionKey == "" {
 		return nil, ErrEncryptionKeyNotSet
 	}
@@ -44,7 +44,7 @@ func (e EncryptedTextField) MarshalJSON() ([]byte, error) {
 }
 
 // Unmarshal = JSON > struct
-func (e *EncryptedTextField) UnmarshalJSON(b []byte) error {
+func (e *String) UnmarshalJSON(b []byte) error {
 	if marshalEncryptionKey == "" {
 		return ErrEncryptionKeyNotSet
 	}
